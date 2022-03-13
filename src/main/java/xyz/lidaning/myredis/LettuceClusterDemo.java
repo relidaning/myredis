@@ -14,18 +14,9 @@ public class LettuceClusterDemo {
 
     public static void main(String[] args) {
         ArrayList<RedisURI> list = new ArrayList<>();
-        RedisURI uri1 = new RedisURI();
-        uri1.setHost("192.168.178.135");
-        uri1.setPort(6379);
-        list.add(uri1);
-        RedisURI uri2 = new RedisURI();
-        uri2.setHost("192.168.178.135");
-        uri2.setPort(6380);
-        list.add(uri2);
-        RedisURI uri3 = new RedisURI();
-        uri3.setHost("192.168.178.135");
-        uri3.setPort(6381);
-        list.add(uri3);
+        list.add(RedisURI.create("redis://192.168.178.135/6379"));
+        list.add(RedisURI.create("redis://192.168.178.135/6380"));
+        list.add(RedisURI.create("redis://192.168.178.135/6381"));
         RedisClusterClient client = RedisClusterClient.create(list);
         StatefulRedisClusterConnection<String, String> connect = client.connect();
 

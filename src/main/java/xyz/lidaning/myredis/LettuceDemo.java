@@ -10,11 +10,11 @@ import java.nio.charset.StandardCharsets;
 public class LettuceDemo {
 
     public static void main(String[] args) {
-        RedisURI uri = new RedisURI();
-        uri.setHost("127.0.0.1");
+        /*RedisURI uri = new RedisURI();
+        uri.setHost("");
         uri.setPort(6379);
-        uri.setPassword("passwordhere".toCharArray());
-        RedisClient client = RedisClient.create(uri);
+        uri.setPassword("passwordhere".toCharArray());*/
+        RedisClient client = RedisClient.create(RedisURI.create("redis://passwordhere@127.0.0.1:6379"));
 
         // connection, 线程安全的长连接，连接丢失时会自动重连，直到调用 close 关闭连接。
         StatefulRedisConnection<String, String> connection = client.connect();
